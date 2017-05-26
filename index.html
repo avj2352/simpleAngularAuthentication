@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Authentication</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body ng-controller="mainController">
+    <div class="container">
+        <h1 ng-bind="title"></h1>
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <form class="form-horizontal">
+  <fieldset>
+    <legend>Login Form</legend>
+    <!--Email Field-->
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <!--Password Field-->
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">        
+      </div>
+    </div>
+    <!--Submit Buttons-->
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-base64/angular-base64.min.js"></script>
+    <script src="node_modules/ng-storage/ngStorage.min.js"></script>
+    <script src="src/app.js"></script>
+</body>
+</html>

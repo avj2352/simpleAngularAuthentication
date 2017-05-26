@@ -1,0 +1,20 @@
+{
+  "name": "angular_authentication",
+  "version": "1.0.0",
+  "description": "Simple Angular Authentication with GitHub API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "keywords": ["angular_authentication"],
+  "author": "PramodAJ",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.11",
+    "angular-base64": "^2.0.5",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "ng-storage": "^0.3.2"
+  }
+}
