@@ -34,25 +34,19 @@
     <!--Submit Buttons-->
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default" ng-click="resetForm(loginForm)">Cancel</button>
         <button type="submit" class="btn btn-primary" ng-click="submitForm(loginForm)">Submit</button>
+        <button type="reset" class="btn btn-default" ng-click="resetForm(loginForm)">Cancel</button>
       </div>
     </div>
   </fieldset>
 </form>
             </div>
+            <div class="col-lg-6" ng-if="resultName!=''&&imageURL!=''">
+              <h2> Welcome : {{resultName}}</h2>
+              <p><img ng-src="{{imageUrl}}" alt="avatar"></p>
+            </div>
         </div>
-
-
-
-
-
-
-
-
-
     </div>
-    
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
