@@ -9,15 +9,28 @@
     .service('authService',authService);
 
 
-    authService.$inject = ['$http'];
-    mainController.$inject = ['$scope','$localStorage','$base64','authService'];
+    authService.$inject = ['$http','$base64'];
+    mainController.$inject = ['$scope','$base64','$localStorage','authService'];
     
-    function mainController($scope,$localStorage,$base64,authService){
+    function mainController($scope,$base64,$localStorage,authService){
         var vm = $scope;
         $scope.title = authService.getService();
+        vm.loginForm = {
+            userName:'',
+            password:''
+        };
+
+        vm.resetForm = function(loginFormObj){
+            loginFormObj.userName = '';
+            loginFormObj.password = '';
+        };//end:resetForm
+
+        vm.submitForm = function(loginFormObj){
+            
+        };//end:submitForm
     }//end:mainController
 
-    function authService($http){
+    function authService($http, $base64){
         return{
             getService:getService
         };
