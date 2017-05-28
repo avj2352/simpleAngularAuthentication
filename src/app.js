@@ -121,6 +121,8 @@
             console.log('Password set as:',password);
         }//end:setPassword
 
+
+        //NOTE: This will not work, TestRail API Server should be configured to accept CORS Origin Server Requests!
         function getTestRailApi(requestObj){
             if(!requestObj){
                 throw('getTextRailAPI error:');                            
