@@ -11,41 +11,8 @@
     <div class="container">
         <h1 ng-bind="title"></h1>
 
-
-        <div class="row">
-            <div class="col-lg-6">
-                <form class="form-horizontal">
-  <fieldset>
-    <legend>Login Form</legend>
-    <!--Email Field-->
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" ng-model="loginForm.userName" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <!--Password Field-->
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input type="password" ng-model="loginForm.password" class="form-control" id="inputPassword" placeholder="Password">        
-      </div>
-    </div>
-    <!--Submit Buttons-->
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary" ng-click="submitForm(loginForm)">Submit</button>
-        <button type="reset" class="btn btn-default" ng-click="resetForm(loginForm)">Cancel</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
-            </div>
-            <div class="col-lg-6" ng-if="resultName!=''&&imageURL!=''">
-              <h2> Welcome : {{resultName}}</h2>
-              <p><img ng-src="{{imageUrl}}" alt="avatar"></p>
-            </div>
-        </div>
+    <!--Login page of TestRail comes here-->
+    <div ng-bind-html="responseHTML"></div>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

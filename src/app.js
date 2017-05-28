@@ -9,60 +9,47 @@
     .service('authService',authService);
     //Registering the endpoint as a constant. Change this endpoint to your specific URL
     angular.module('myApp')
-    .constant('loginEndPoint','https://api.github.com/users');
+    .constant('loginEndPoint','https://seagatesystemtest.testrail.net');
 
 
     authService.$inject = ['$http','loginEndPoint'];
-    mainController.$inject = ['$scope','$base64','$localStorage','authService'];
+    mainController.$inject = ['$scope','$base64','$localStorage','authService','$sce'];
     
-    function mainController($scope,$base64,$localStorage,authService){
+    function mainController($scope,$base64,$localStorage,authService,$sce){
         var vm = $scope;
-        vm.resultName = ''; // Result Name from XHR Will be stored in this
-        vm.imageUrl = ''; // Result Avatar Image from XHR Will be stored in this image
+        //Now we are getting an HTML response, so using a different variable name, responseHTML
+        vm.responseHTML = '';
+
         $scope.title = authService.getService();
-        vm.loginForm = {
-            userName:'',
-            password:''
-        };
+        //We are calling the Get Page service at the beginning of the application
+        var getHTMLPageService = authService.getTextRailPage();
+        getHTMLPageService.then(function(response){
+            if(response.data){
+                vm.responseHTML = $sce.trustAsHtml(response.data);
+            }//endif: response has a ppty data
+        });//end:getHTMLPageService
 
-        vm.resetForm = function(loginFormObj){
-            loginFormObj.userName = '';
-            loginFormObj.password = '';
-        };//end:resetForm
-
-        vm.submitForm = function(loginFormObj){
-            //Base 64 encoding            
-            var githubAuthenticateService = authService.githubAuthenticate(loginFormObj);
-            githubAuthenticateService.then(function(response){
-                if(response.data.length>0){
-                    vm.resultName = response.data[0].login;
-                    vm.imageUrl = response.data[0].avatar_url;
-                }else{
-                    console.error('Sorry Response is not in Array format');
-                }
-            });
-        };//end:submitForm
+        
     }//end:mainController
 
     function authService($http,loginEndPoint){
         return{
             getService:getService,
-            githubAuthenticate:githubAuthenticate
+            getTextRailPage:getTextRailPage
         };
         function getService(){
-            return 'Angular GitHub API Authentication';
+            return 'Getting Test Rail Website...';
         }//end:getService
 
-        function githubAuthenticate(loginFormObj){
+        function getTextRailPage(){
             //For OAuth you need to encode the userName and password
             // loginFormObj.userName = $base64.encode(loginFormObj.userName);
             // loginFormObj.password = $base64.encode(loginFormObj.password);            
             var promise = $http({
                 method:'GET',
                 url:loginEndPoint,
-                params:{                    
-                    client_id:loginFormObj.userName,
-                    client_secret:loginFormObj.password                    
+                headers:{                    
+                    'Content-Type':'text/html; charset=utf-8',                                    
                 }
             })
             .success(function(data,status,headers,config){
