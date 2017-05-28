@@ -41,10 +41,7 @@
             return 'Getting Test Rail Website...';
         }//end:getService
 
-        function getTextRailPage(){
-            //For OAuth you need to encode the userName and password
-            // loginFormObj.userName = $base64.encode(loginFormObj.userName);
-            // loginFormObj.password = $base64.encode(loginFormObj.password);            
+        function getTextRailPage(){                   
             var promise = $http({
                 method:'GET',
                 url:loginEndPoint,
