@@ -1,24 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Simple Authentication</title>
-    <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Authentication</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body ng-controller="mainController">
-    <div class="container">
-        <h1 ng-bind="title"></h1>
+  <!--navbar-->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" ng-bind="title"></a>
+      </div>
+    </div>
+  </nav>
+  <!--end:navbar-->
+  <div class="container">
+    <!--userLogin modal-->
+    <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+    <div id="myModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title">Login</h2>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" validate>
+              <fieldset>
+                <div class="form-group">
+                  <label for="inputUserName" class="col-lg-2 control-label">Email</label>
+                  <div class="col-lg-10">
+                    <input ng-model="formObject.username" required type="text" class="form-control" id="inputUserName" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                  <div class="col-lg-10">
+                    <input ng-model="formObject.password" required type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <div class="checkbox">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="loginUser(formObject)">Login</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetUser()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end:userLogin modal-->
+    <!--Request Page-->
+    <div class="row">
+      <h1 ng-if="userNameHeader!==''">Welcome {{userNameHeader}}</h1>
+      <h1 ng-if="userNameHeader==''">Please Login In!!</h1>
+    </div>
+    <div ng-if="userNameHeader!==''" class="row">
+      <div class="form-group">
+        <label class="control-label">Enter API Request</label>
+        <div class="input-group">
+          <span class="input-group-addon">XHR</span>
+          <input ng-model="xhrRequest" type="text" class="form-control" placeholder="get_case/1">
+          <span class="input-group-btn">
+      <button class="btn btn-default" type="button" ng-click="submitRequest(xhrRequest)">Submit Request</button>
+    </span>
+        </div>
+      </div>
+    </div>
+    <!--end:Request Page-->
+
+
 
     <!--Login page of TestRail comes here-->
     <div ng-bind-html="responseHTML"></div>
-    </div>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-base64/angular-base64.min.js"></script>
-    <script src="node_modules/ng-storage/ngStorage.min.js"></script>
-    <script src="src/app.js"></script>
+  </div>
+  <script src="src/lib/jquery.min.js"></script>
+  <script src="src/lib/bootstrap.min.js"></script>
+  <script src="src/lib/angular.min.js"></script>
+  <script src="src/lib/angular-base64.min.js"></script>  
+  <script src="src/app.js"></script>
 </body>
+
 </html>
